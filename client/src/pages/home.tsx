@@ -1,4 +1,4 @@
-import { useList } from "@pankod/refine-core";
+import { useList, useCustom } from "@pankod/refine-core";
 
 import { Box, Stack, Typography } from "@pankod/refine-mui";
 
@@ -10,6 +10,8 @@ import {
   // TopAgent,
 } from "components";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api/v1";
+
 const Home = () => {
   const { data, isLoading, isError } = useList({
     resource: "properties",
@@ -20,7 +22,13 @@ const Home = () => {
     },
   });
 
+  const { data: dashboardData } = useCustom({
+    url: `${API_URL}/dashboard`,
+    method: "get",
+  });
+
   const latestProperties = data?.data ?? [];
+  const stats = dashboardData?.data as any;
 
   if (isLoading) {
     return <Typography>Loading...</Typography>;
@@ -46,26 +54,26 @@ const Home = () => {
       >
         <PieChart
           title="Properties for Sale"
-          value={684}
-          series={[75, 25]}
+          value={stats?.propertiesForSale ?? 0}
+          series={[stats?.propertiesForSale ?? 60, stats?.propertiesForRent ?? 40]}
           colors={["#275be8", "#c4e8ef"]}
         />
         <PieChart
           title="Properties for Rent"
-          value={546}
-          series={[60, 40]}
+          value={stats?.propertiesForRent ?? 0}
+          series={[stats?.propertiesForRent ?? 40, stats?.propertiesForSale ?? 60]}
           colors={["#fd8539", "#c4e8ef"]}
         />
         <PieChart
           title="Total Customers"
-          value={568}
-          series={[75, 25]}
+          value={stats?.totalUsers ?? 0}
+          series={[stats?.totalUsers ?? 1, Math.max(1, (stats?.totalProperties ?? 1) - (stats?.totalUsers ?? 0))]}
           colors={["#2ed480", "#c4e8ef"]}
         />
         <PieChart
           title="Total City"
-          value={90}
-          series={[75, 25]}
+          value={stats?.totalCities ?? 0}
+          series={[stats?.totalCities ?? 1, Math.max(1, (stats?.totalProperties ?? 1))]}
           colors={["#fe6d8e", "#c4e8ef"]}
         />
       </Box>

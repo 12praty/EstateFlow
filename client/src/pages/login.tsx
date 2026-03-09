@@ -1,50 +1,86 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { useLogin } from "@pankod/refine-core";
-import { Container, Box } from "@pankod/refine-mui";
+import { Container, Box, TextField, Button, Typography, Stack } from "@pankod/refine-mui";
 import { logo, tower } from "../assets";
 
-import { CredentialResponse } from "../interfaces/google";
-
 export const Login: React.FC = () => {
-  const { mutate: login } = useLogin<CredentialResponse>();
+  const { mutate: login } = useLogin();
+  const [isRegister, setIsRegister] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const GoogleButton = (): JSX.Element => {
-    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
-    const divRef = useRef<HTMLDivElement>(null);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError("");
+  };
 
-    useEffect(() => {
-      if (typeof window === "undefined" || !window.google || !divRef.current) {
-        return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      if (isRegister) {
+        if (!formData.name || !formData.email || !formData.password) {
+          setError("All fields are required");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/auth/register`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              password: formData.password,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          setError(data.message || "Registration failed");
+          setLoading(false);
+          return;
+        }
+
+        // Auto-login after successful registration
+        localStorage.setItem("token", data.token);
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            ...data.user,
+            userid: data.user._id,
+          })
+        );
+
+        login({ email: formData.email, password: formData.password });
+      } else {
+        if (!formData.email || !formData.password) {
+          setError("Email and password are required");
+          setLoading(false);
+          return;
+        }
+
+        login({ email: formData.email, password: formData.password });
       }
-
-      try {
-        window.google.accounts.id.initialize({
-          ux_mode: "popup",
-          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-          callback: async (res: CredentialResponse) => {
-            if (res.credential) {
-              login(res);
-            }
-          },
-        });
-        window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_blue",
-          size: "medium",
-          type: "standard",
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }, []);
-
-    return <div ref={divRef} />;
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    }
+    setLoading(false);
   };
 
   return (
-    <Box
-      component="div"
-      sx={{ backgroundColor: "#FCFCFC" }}
-    >
+    <Box component="div" sx={{ backgroundColor: "#FCFCFC" }}>
       <Container
         component="main"
         maxWidth="xs"
@@ -64,19 +100,109 @@ export const Login: React.FC = () => {
           }}
         >
           <div>
-            <img src={tower} alt="tower Logo" height={300} />
+            <img src={tower} alt="tower Logo" height={200} />
           </div>
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "10px",
-          }}>
-            <img src={logo} alt="Yariga Logo" />
-            <h1 style={{color: "indigo"}}>Nivaas</h1>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "20px",
+            }}
+          >
+            <img src={logo} alt="EstateFlow Logo" />
+            <h1 style={{ color: "indigo" }}>EstateFlow</h1>
           </div>
-          <Box>
-            <GoogleButton />
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+            }}
+          >
+            {isRegister && (
+              <TextField
+                fullWidth
+                label="Full Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                variant="outlined"
+                required
+              />
+            )}
+            <TextField
+              fullWidth
+              label="Email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              variant="outlined"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              variant="outlined"
+              required
+            />
+
+            {error && (
+              <Typography color="error" fontSize={14} textAlign="center">
+                {error}
+              </Typography>
+            )}
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              disabled={loading}
+              sx={{
+                backgroundColor: "#475be8",
+                color: "#fcfcfc",
+                fontSize: 16,
+                fontWeight: 600,
+                textTransform: "capitalize",
+                padding: "10px",
+                "&:hover": {
+                  backgroundColor: "#1e36e8",
+                },
+              }}
+            >
+              {loading
+                ? "Please wait..."
+                : isRegister
+                ? "Register"
+                : "Login"}
+            </Button>
+
+            <Stack direction="row" justifyContent="center" gap={0.5}>
+              <Typography fontSize={14} color="#808191">
+                {isRegister ? "Already have an account?" : "Don't have an account?"}
+              </Typography>
+              <Typography
+                fontSize={14}
+                color="#475be8"
+                sx={{ cursor: "pointer", fontWeight: 600 }}
+                onClick={() => {
+                  setIsRegister(!isRegister);
+                  setError("");
+                }}
+              >
+                {isRegister ? "Login" : "Register"}
+              </Typography>
+            </Stack>
           </Box>
         </Box>
       </Container>

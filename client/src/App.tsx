@@ -17,7 +17,6 @@ import {
 } from "@mui/icons-material";
 
 import dataProvider from "@pankod/refine-simple-rest";
-// import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { ColorModeContextProvider } from "contexts";
@@ -33,8 +32,8 @@ import {
   AgentProfile,
   EditProperty
 } from "pages";
-import { CredentialResponse } from "interfaces/google";
-import { parseJwt } from "utils/parse-jwt";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api/v1";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -52,70 +51,47 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
 function App() {
   const authProvider: AuthProvider = {
-    login: async ({ credential }: CredentialResponse) => {
-      const profileObj = credential ? parseJwt(credential) : null;
-
-      // Save user to MongoDB...
-      if (profileObj) {
-        const response = await fetch(
-          "https://nivaas-api.vercel.app/api/v1/users",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: profileObj.name,
-              email: profileObj.email,
-              avatar: profileObj.picture,
-            }),
-          }
-        );
+    login: async ({ email, password }: { email: string; password: string }) => {
+      try {
+        const response = await fetch(`${API_URL}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
 
         const data = await response.json();
 
-        if(response.status === 200){
+        if (response.ok) {
+          localStorage.setItem("token", data.token);
           localStorage.setItem(
             "user",
             JSON.stringify({
-              ...profileObj,
-              avatar: profileObj.picture,
-              userid: data._id
+              ...data.user,
+              userid: data.user._id,
             })
           );
-        } else {
-          return Promise.reject();
+          return Promise.resolve();
         }
+
+        return Promise.reject(new Error(data.message || "Login failed"));
+      } catch (error) {
+        return Promise.reject(error);
       }
-
-      localStorage.setItem("token", `${credential}`);
-
-      return Promise.resolve();
     },
     logout: () => {
-      const token = localStorage.getItem("token");
-
-      if (token && typeof window !== "undefined") {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        axios.defaults.headers.common = {};
-        window.google?.accounts.id.revoke(token, () => {
-          return Promise.resolve();
-        });
-      }
-
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      axios.defaults.headers.common = {};
       return Promise.resolve();
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
       const token = localStorage.getItem("token");
-
       if (token) {
         return Promise.resolve();
       }
       return Promise.reject();
     },
-
     getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
       const user = localStorage.getItem("user");
@@ -131,7 +107,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("https://nivaas-api.vercel.app/api/v1")}
+          dataProvider={dataProvider(API_URL)}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
