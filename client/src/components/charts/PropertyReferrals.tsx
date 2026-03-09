@@ -34,9 +34,9 @@ const PropertyReferrals = () => {
   return (
     <Box
       id="chart"
-      minHeight={490}
-      minWidth="30%"
-      p={4}
+      minHeight={{ xs: "auto", sm: 490 }}
+      minWidth={{ xs: "100%", md: "30%" }}
+      p={{ xs: 2, sm: 4 }}
       bgcolor="#fcfcfc"
       borderRadius="15px"
       display="flex"

@@ -48,12 +48,13 @@ const AllProperties = () => {
     <Box>
       <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row" }}
           width="100%"
           justifyContent="space-between"
-          alignItems="center"
+          alignItems={{ xs: "flex-start", sm: "center" }}
+          gap={2}
         >
-          <Typography fontSize={25} fontWeight={700} color="#11142d">
+          <Typography fontSize={{ xs: 20, sm: 25 }} fontWeight={700} color="#11142d">
             {!allProperties.length
               ? "There are no properties"
               : "All Properties"}
@@ -70,6 +71,7 @@ const AllProperties = () => {
           direction="row"
           justifyContent="space-between"
           alignItems="center"
+          width="100%"
         >
           <Box
             mb={2}
@@ -84,6 +86,7 @@ const AllProperties = () => {
               gap={2}
               flexWrap="wrap"
               mb={{ xs: "20px", sm: 0 }}
+              width={{ xs: "100%", sm: "auto" }}
             >
               <CustomButton
                 title={`Sort price ${currentPrice === "asc" ? "↑" : "↓"}`}
@@ -164,7 +167,7 @@ const AllProperties = () => {
         ))}
       </Box>
       {allProperties.length > 0 && (
-        <Box display="flex" gap={2} mt={3} flexWrap="wrap">
+        <Box display="flex" gap={2} mt={3} flexWrap="wrap" alignItems="center" justifyContent={{ xs: "center", sm: "flex-start" }}>
           <CustomButton
             title="Previous"
             color="#fcfcfc"
@@ -173,7 +176,7 @@ const AllProperties = () => {
             disabled={!(current > 1)}
           />
           <Box
-            display={{ xs: "hidden", sm: "flex" }}
+            display={{ xs: "none", sm: "flex" }}
             alignItems="center"
             gap="5px"
           >
@@ -199,6 +202,7 @@ const AllProperties = () => {
             defaultValue={6}
             required
             inputProps={{ "aria-label": "Without label" }}
+            sx={{ minWidth: 100 }}
           >
             {[4, 6, 9, 12, 15].map((size) => (
               <MenuItem key={size} value={size}>

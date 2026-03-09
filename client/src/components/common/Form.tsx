@@ -69,7 +69,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
             />
           </FormControl>
 
-          <Stack direction="row" gap={4}>
+          <Stack direction={{ xs: "column", sm: "row" }} gap={4}>
             <FormControl sx={{ flex: 1 }}>
               <FormHelperText
                 sx={{

@@ -45,7 +45,7 @@ const Home = () => {
       </Typography>
 
       <Box
-        gap={4}
+        gap={{ xs: 2, sm: 4 }}
         mt="20px"
         sx={{
           display: "flex",
@@ -91,7 +91,7 @@ const Home = () => {
       <Box
         flex={1}
         borderRadius="15px"
-        padding="20px"
+        padding={{ xs: "10px", sm: "20px" }}
         bgcolor="#fcfcfc"
         display="flex"
         flexDirection="column"
@@ -102,7 +102,7 @@ const Home = () => {
           Latest Properties
         </Typography>
 
-        <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+        <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 2, sm: 4 } }}>
           {latestProperties.map((property) => (
             <PropertyCard
               key={property.id}

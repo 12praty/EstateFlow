@@ -16,7 +16,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
       {type} Profile
     </Typography>
 
-    <Box mt="20px" borderRadius="15px" padding="20px" bgcolor="#FCFCFC">
+    <Box mt="20px" borderRadius="15px" padding={{ xs: "10px", sm: "20px" }} bgcolor="#FCFCFC">
       <Box
         sx={{
           display: "flex",
@@ -26,16 +26,22 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
       >
         <img
           src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-          width={340}
-          height={320}
           alt="abstract"
           className="my_profile-bg"
+          style={{
+            width: "100%",
+            maxWidth: 340,
+            height: "auto",
+            maxHeight: 320,
+            objectFit: "cover",
+            borderRadius: "15px",
+          }}
         />
         <Box
           flex={1}
           sx={{
             marginTop: { md: "58px" },
-            marginLeft: { xs: "20px", md: "0px" },
+            marginLeft: { xs: "0px", md: "0px" },
           }}
         >
           <Box
@@ -54,6 +60,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
               height={78}
               alt="user_profile"
               className="my_profile_user-img"
+              style={{ borderRadius: "50%", objectFit: "cover" }}
             />
 
             <Box
@@ -90,8 +97,8 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                   </Box>
                 </Stack>
 
-                <Stack direction="row" flexWrap="wrap" gap="20px" pb={4}>
-                  <Stack flex={1} gap="15px">
+                <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap="20px" pb={4}>
+                  <Stack flex={1} gap="15px" minWidth={{ xs: "100%", sm: "auto" }}>
                     <Typography fontSize={14} fontWeight={500} color="#808191">
                       Phone Number
                     </Typography>
@@ -108,7 +115,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                     </Box>
                   </Stack>
 
-                  <Stack flex={1} gap="15px">
+                  <Stack flex={1} gap="15px" minWidth={{ xs: "100%", sm: "auto" }}>
                     <Typography fontSize={14} fontWeight={500} color="#808191">
                       Email
                     </Typography>
@@ -119,7 +126,14 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                       gap="10px"
                     >
                       <Email sx={{ color: "#11142D" }} />
-                      <Typography fontSize={14} color="#11142D">
+                      <Typography
+                        fontSize={14}
+                        color="#11142D"
+                        sx={{
+                          wordBreak: "break-all",
+                          overflowWrap: "break-word",
+                        }}
+                      >
                         {email}
                       </Typography>
                     </Box>
@@ -133,7 +147,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
     </Box>
 
     {properties.length > 0 && (
-      <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#FCFCFC">
+      <Box mt={2.5} borderRadius="15px" padding={{ xs: "10px", sm: "20px" }} bgcolor="#FCFCFC">
         <Typography fontSize={18} fontWeight={600} color="#11142D">
           {type} Properties
         </Typography>
@@ -154,7 +168,6 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
               location={property.location}
               price={property.price}
               photo={property.photo}
-              width={310}
             />
           ))}
         </Box>

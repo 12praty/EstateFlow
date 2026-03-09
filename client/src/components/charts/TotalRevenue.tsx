@@ -8,19 +8,19 @@ const TotalRevenue = () => {
     <Box
       id="chart"
       flex={1}
-      p={4}
+      p={{ xs: 2, sm: 4 }}
       bgcolor="#fcfcfc"
       borderRadius="15px"
       display="flex"
       flexDirection="column"
-      minWidth="30%"
+      minWidth={{ xs: "100%", md: "30%" }}
     >
       <Typography fontSize={18} fontWeight={600} color="#11142d">
         Total Revenue
       </Typography>
 
       <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
-        <Typography fontSize={28} fontWeight={700} color="#11142d">
+        <Typography fontSize={{ xs: 20, sm: 28 }} fontWeight={700} color="#11142d">
           $236,535
         </Typography>
         <Stack direction="row" alignItems="center" gap={1}>

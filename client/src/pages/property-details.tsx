@@ -21,7 +21,6 @@ const PropertyDetails = () => {
   const { data, isLoading, isError } = queryResult;
   
   const propertyDetails = data?.data ?? {};
-  console.log(propertyDetails);
 
   if (isLoading) {
     return <Typography>Loading...</Typography>;
@@ -54,8 +53,8 @@ const PropertyDetails = () => {
     <Box
       borderRadius="15px"
       bgcolor="#fcfcfc"
-      padding="20px"
-      width="fit-content"
+      padding={{ xs: "10px", sm: "20px" }}
+      width="100%"
     >
       <Typography fontSize={25} fontWeight={700} color="#11142d">
         Details
@@ -66,12 +65,16 @@ const PropertyDetails = () => {
         flexDirection={{ xs: "column", lg: "row" }}
         gap={4}
       >
-        <Box flex={1} maxWidth={764}>
+        <Box flex={1} maxWidth={{ xs: "100%", lg: 764 }}>
           <img
             src={propertyDetails.photo}
             alt={propertyDetails.title}
-            height={546}
-            style={{ objectFit: "cover", borderRadius: "10px" }}
+            style={{
+              width: "100%",
+              maxHeight: 546,
+              objectFit: "cover",
+              borderRadius: "10px",
+            }}
             className="property_details-img"
           />
 
@@ -98,15 +101,15 @@ const PropertyDetails = () => {
             </Stack>
 
             <Stack
-              direction="row"
+              direction={{ xs: "column", sm: "row" }}
               justifyContent="space-between"
               flexWrap="wrap"
-              alignItems="center"
+              alignItems={{ xs: "flex-start", sm: "center" }}
               gap={2}
             >
               <Box>
                 <Typography
-                  fontSize={22}
+                  fontSize={{ xs: 18, sm: 22 }}
                   fontWeight={600}
                   color="#11142d"
                   textTransform="capitalize"
@@ -136,7 +139,7 @@ const PropertyDetails = () => {
                   Price
                 </Typography>
                 <Stack direction="row" alignItems="flex-end" gap={1}>
-                  <Typography fontSize={25} fontWeight={700} color="#475BE8">
+                  <Typography fontSize={{ xs: 20, sm: 25 }} fontWeight={700} color="#475BE8">
                     ${propertyDetails.price}
                   </Typography>
                   <Typography fontSize={14} color="#808191" mb={0.5}>
@@ -160,7 +163,7 @@ const PropertyDetails = () => {
         <Box
           width="100%"
           flex={1}
-          maxWidth={326}
+          maxWidth={{ xs: "100%", lg: 326 }}
           display="flex"
           flexDirection="column"
           gap="20px"
@@ -224,7 +227,7 @@ const PropertyDetails = () => {
             <Stack
               width="100%"
               mt="25px"
-              direction="row"
+              direction={{ xs: "column", sm: "row" }}
               flexWrap="wrap"
               gap={2}
             >

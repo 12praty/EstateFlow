@@ -10,6 +10,7 @@ const PropertyCard = ({ id, title, price, location, photo, width }: PropertyCard
       to={`/properties/show/${id}`}
       sx={{
         maxWidth: width ? `${width}px` :'320px',
+        width: '100%',
         padding: '10px',
         "&:hover": {
           boxShadow: "0px 22px 45px 2px rgba(176, 176, 176, 0.1)"

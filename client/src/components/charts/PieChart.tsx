@@ -11,11 +11,13 @@ const PieChart = ({ title, value, series, colors }: PieChartProps) => {
       bgcolor="#fcfcfc"
       justifyContent="space-between"
       alignItems="center"
-      pl={3.5}
+      pl={{ xs: 2, sm: 3.5 }}
       py={2}
+      pr={{ xs: 1, sm: 0 }}
       borderRadius="15px"
       minHeight="110px"
       width="fit-content"
+      minWidth={{ xs: "100%", sm: "fit-content" }}
     >
       <Stack direction="column">
         <Typography fontSize={14} color="#808191">
