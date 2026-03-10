@@ -198,6 +198,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           <Box
             component="form"
             onSubmit={handleSubmit}
+            noValidate
             sx={{
               display: "flex",
               flexDirection: "column",

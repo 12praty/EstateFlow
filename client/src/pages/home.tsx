@@ -27,7 +27,7 @@ const Home = () => {
     method: "get",
   });
 
-  const latestProperties = Array.isArray(data?.data) ? data.data : [];
+  const latestProperties = (Array.isArray(data?.data) ? data?.data : []) ?? [];
   const stats = dashboardData?.data as any;
 
   if (isLoading) {

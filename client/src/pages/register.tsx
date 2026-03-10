@@ -33,6 +33,19 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
         return;
       }
 
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        setError("Please enter a valid email address");
+        setLoading(false);
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        setError("Password must be at least 6 characters long");
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/auth/register`,
         {
@@ -243,6 +256,7 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
             <Box
               component="form"
               onSubmit={handleSubmit}
+              noValidate
               sx={{
                 display: "flex",
                 flexDirection: "column",
