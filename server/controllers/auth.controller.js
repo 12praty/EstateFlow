@@ -1,6 +1,7 @@
 import User from "../mongodb/models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { getJwtSecret } from "../config/env.js";
 
 const register = async (req, res) => {
   try {
@@ -27,7 +28,7 @@ const register = async (req, res) => {
 
     const token = jwt.sign(
       { id: newUser._id, email: newUser.email },
-      process.env.JWT_SECRET,
+      getJwtSecret(),
       { expiresIn: "7d" }
     );
 
@@ -41,6 +42,12 @@ const register = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error?.code === "ERR_MISSING_ENV") {
+      return res.status(500).json({
+        message:
+          "Server misconfigured: JWT secret is missing. Set JWT_SECRET in the server environment.",
+      });
+    }
     res.status(500).json({ message: error.message });
   }
 };
@@ -65,7 +72,7 @@ const login = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, email: user.email },
-      process.env.JWT_SECRET,
+      getJwtSecret(),
       { expiresIn: "7d" }
     );
 
@@ -79,6 +86,12 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error?.code === "ERR_MISSING_ENV") {
+      return res.status(500).json({
+        message:
+          "Server misconfigured: JWT secret is missing. Set JWT_SECRET in the server environment.",
+      });
+    }
     res.status(500).json({ message: error.message });
   }
 };

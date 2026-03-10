@@ -29,7 +29,7 @@ const CreateProperty = () => {
     onFinish({
       ...data,
       photo: propertyImage.url,
-      email: user.email
+      email: user?.email
     });
     // navigate('/properties/all');
   };

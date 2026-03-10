@@ -30,7 +30,7 @@ const PropertyDetails = () => {
     return <Typography>Something went wrong!</Typography>;
   }
 
-  const isCurrentUser = user.email === propertyDetails.creator.email;
+  const isCurrentUser = user?.email === propertyDetails?.creator?.email;
 
   const handleDeleteProperty = () => {
     const response = window.confirm("Are you sure you want to delete this property?");
@@ -185,8 +185,8 @@ const PropertyDetails = () => {
             >
               <img
                 src={
-                  checkImage(propertyDetails.creator.avatar)
-                    ? propertyDetails.creator.avatar
+                  checkImage(propertyDetails?.creator?.avatar)
+                    ? propertyDetails?.creator?.avatar
                     : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
                 }
                 alt="avatar"
@@ -200,7 +200,7 @@ const PropertyDetails = () => {
 
               <Box mt="15px">
                 <Typography fontSize={18} fontWeight={600} color="#11142D">
-                  {propertyDetails.creator.name}
+                  {propertyDetails?.creator?.name}
                 </Typography>
                 <Typography
                   mt="5px"
@@ -220,7 +220,7 @@ const PropertyDetails = () => {
               </Stack>
 
               <Typography mt={1} fontSize={16} fontWeight={600} color="#11142D">
-                {propertyDetails.creator.allProperties.length} Properties
+                {propertyDetails?.creator?.allProperties?.length ?? 0} Properties
               </Typography>
             </Stack>
 
