@@ -9,32 +9,36 @@ const TotalRevenue = () => {
       id="chart"
       flex={1}
       p={{ xs: 2, sm: 4 }}
-      bgcolor="#fcfcfc"
-      borderRadius="15px"
+      bgcolor="var(--card)"
+      borderRadius="var(--radius)"
       display="flex"
       flexDirection="column"
       minWidth={{ xs: "100%", md: "30%" }}
     >
-      <Typography fontSize={18} fontWeight={600} color="#11142d">
+      <Typography fontSize={18} fontWeight={600} color="var(--foreground)">
         Total Revenue
       </Typography>
 
       <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
-        <Typography fontSize={{ xs: 20, sm: 28 }} fontWeight={700} color="#11142d">
+        <Typography
+          fontSize={{ xs: 20, sm: 28 }}
+          fontWeight={700}
+          color="var(--foreground)"
+        >
           $236,535
         </Typography>
         <Stack direction="row" alignItems="center" gap={1}>
           <ArrowCircleUpRounded
             sx={{
               fontSize: 25,
-              color: "#475be8",
+              color: "var(--chart-1)",
             }}
           />
           <Stack>
-            <Typography fontSize={15} color="#475be8">
+            <Typography fontSize={15} color="var(--chart-1)">
               0.8%
             </Typography>
-            <Typography fontSize={12} color="#808191">
+            <Typography fontSize={12} color="var(--muted-foreground)">
               Than Last Month
             </Typography>
           </Stack>

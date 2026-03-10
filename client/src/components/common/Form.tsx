@@ -5,11 +5,17 @@ import CustomButton from "./CustomButton";
 const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,handleImageChange,onFinishHandler}: FormProps) => {
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142d">
+      <Typography fontSize={25} fontWeight={700} color="var(--foreground)">
         {type} a Property
       </Typography>
 
-      <Box mt={2.5} mb={1.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
+      <Box
+        mt={2.5}
+        mb={1.5}
+        borderRadius="var(--radius)"
+        padding="20px"
+        bgcolor="var(--card)"
+      >
         <form
           onSubmit={handleSubmit(onFinishHandler)}
           style={{
@@ -26,7 +32,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                 fontWeight: 500,
                 margin: "10px 0",
                 fontSize: 16,
-                color: "#11142d",
+                color: "var(--foreground)",
               }}
             >
               Enter Property Name
@@ -46,7 +52,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                 fontWeight: 500,
                 margin: "10px 0",
                 fontSize: 16,
-                color: "#11142d",
+                color: "var(--foreground)",
               }}
             >
               Enter Description
@@ -76,7 +82,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                   fontWeight: 500,
                   margin: "10px 0",
                   fontSize: 16,
-                  color: "#11142d",
+                  color: "var(--foreground)",
                 }}
               >
                 Select Property Type
@@ -106,7 +112,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                   fontWeight: 500,
                   margin: "10px 0",
                   fontSize: 16,
-                  color: "#11142d",
+                  color: "var(--foreground)",
                 }}
               >
                 Enter Property Price
@@ -128,7 +134,7 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                 fontWeight: 500,
                 margin: "10px 0",
                 fontSize: 16,
-                color: "#11142d",
+                color: "var(--foreground)",
               }}
             >
               Enter Location
@@ -145,7 +151,12 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
 
           <Stack direction="column" gap={1} justifyContent="center" mb={2}>
             <Stack direction="row" gap={2}>
-              <Typography fontSize={16} fontWeight={500} color="#11142d" my="10px">
+              <Typography
+                fontSize={16}
+                fontWeight={500}
+                color="var(--foreground)"
+                my="10px"
+              >
                 Property Photo
               </Typography>
 
@@ -167,7 +178,11 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
                 />
               </Button>
             </Stack>
-            <Typography fontSize={14} color="#808191" sx={{wordBreak: 'break-all'}}>
+            <Typography
+              fontSize={14}
+              color="var(--muted-foreground)"
+              sx={{ wordBreak: "break-all" }}
+            >
               {propertyImage ? propertyImage.name : "No file selected"}
             </Typography>
           </Stack>
@@ -175,8 +190,8 @@ const Form = ({type,register,handleSubmit,onFinish,formLoading,propertyImage,han
           <CustomButton
             type="submit"
             title={formLoading ? "Submitting..." : "Submit"}
-            backgroundColor="#475be8"
-            color="#fcfcfc"
+            backgroundColor="var(--primary)"
+            color="var(--primary-foreground)"
           />
         </form>
       </Box>

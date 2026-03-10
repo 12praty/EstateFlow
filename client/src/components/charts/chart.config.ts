@@ -18,7 +18,7 @@ export const TotalRevenueOptions: ApexOptions = {
       show: false,
     },
   },
-  colors: ["#475BE8", "#CFC8FF"],
+  colors: ["#51f0a8", "#7efe8f"],
   plotOptions: {
     bar: {
       borderRadius: 4,
@@ -38,10 +38,29 @@ export const TotalRevenueOptions: ApexOptions = {
   },
   xaxis: {
     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+    labels: {
+      style: {
+        colors: "#f0f0f0",
+      },
+    },
+    axisBorder: {
+      color: "#353a3e",
+    },
+    axisTicks: {
+      color: "#353a3e",
+    },
   },
   yaxis: {
+    labels: {
+      style: {
+        colors: "#969696",
+      },
+    },
     title: {
       text: "$ (thousands)",
+      style: {
+        color: "#969696",
+      },
     },
   },
   fill: {
@@ -50,6 +69,9 @@ export const TotalRevenueOptions: ApexOptions = {
   legend: {
     position: "top",
     horizontalAlign: "right",
+    labels: {
+      colors: "#f0f0f0",
+    },
   },
   tooltip: {
     y: {

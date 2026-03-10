@@ -8,22 +8,27 @@ const PieChart = ({ title, value, series, colors }: PieChartProps) => {
       id="chart"
       flex={1}
       display="flex"
-      bgcolor="#fcfcfc"
+      bgcolor="var(--card)"
       justifyContent="space-between"
       alignItems="center"
       pl={{ xs: 2, sm: 3.5 }}
       py={2}
       pr={{ xs: 1, sm: 0 }}
-      borderRadius="15px"
+      borderRadius="var(--radius)"
       minHeight="110px"
       width="fit-content"
       minWidth={{ xs: "100%", sm: "fit-content" }}
     >
       <Stack direction="column">
-        <Typography fontSize={14} color="#808191">
+        <Typography fontSize={14} color="var(--muted-foreground)">
           {title}
         </Typography>
-        <Typography fontSize={24} color="#11142d" mt={1} fontWeight={700}>
+        <Typography
+          fontSize={24}
+          color="var(--foreground)"
+          mt={1}
+          fontWeight={700}
+        >
           {value}
         </Typography>
       </Stack>

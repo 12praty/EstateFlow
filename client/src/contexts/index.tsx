@@ -1,14 +1,7 @@
-import React, {
-  PropsWithChildren,
-  createContext,
-  useEffect,
-  useState,
-} from "react";
-import { ThemeProvider } from "@pankod/refine-mui";
-import { DarkTheme, LightTheme } from "@pankod/refine-mui";
+import React, { PropsWithChildren, createContext, useEffect } from "react";
 
 type ColorModeContextType = {
-  mode: string;
+  mode: "light" | "dark";
   setMode: () => void;
 };
 
@@ -19,36 +12,23 @@ export const ColorModeContext = createContext<ColorModeContextType>(
 export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  // const colorModeFromLocalStorage = localStorage.getItem("colorMode");
-  // const isSystemPreferenceDark = window?.matchMedia(
-  //   "(prefers-color-scheme: dark)"
-  // ).matches;
-
-  // const systemPreference = isSystemPreferenceDark ? "dark" : "light";
-  const [mode, setMode] = useState("light");
-
   useEffect(() => {
-    window.localStorage.setItem("colorMode", mode);
-  }, [mode]);
+    document.documentElement.classList.add("dark");
+  }, []);
 
   const setColorMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-    } else {
-      setMode("light");
-    }
+    // no-op: app is always dark
   };
 
   return (
     <ColorModeContext.Provider
       value={{
         setMode: setColorMode,
-        mode,
+        mode: "dark",
       }}
     >
-      <ThemeProvider theme={mode === "light" ? LightTheme : DarkTheme}>
-        {children}
-      </ThemeProvider>
+      {children}
     </ColorModeContext.Provider>
   );
 };
+

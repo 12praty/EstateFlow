@@ -54,15 +54,19 @@ const AllProperties = () => {
           alignItems={{ xs: "flex-start", sm: "center" }}
           gap={2}
         >
-          <Typography fontSize={{ xs: 20, sm: 25 }} fontWeight={700} color="#11142d">
+          <Typography
+            fontSize={{ xs: 20, sm: 25 }}
+            fontWeight={700}
+            color="var(--foreground)"
+          >
             {!allProperties.length
               ? "There are no properties"
               : "All Properties"}
           </Typography>
           <CustomButton
             title="Add Property"
-            color="#fcfcfc"
-            backgroundColor="#475be8"
+            color="var(--primary-foreground)"
+            backgroundColor="var(--primary)"
             icon={<Add />}
             handleClick={() => navigate("/properties/create")}
           />
@@ -90,9 +94,9 @@ const AllProperties = () => {
             >
               <CustomButton
                 title={`Sort price ${currentPrice === "asc" ? "↑" : "↓"}`}
-                color="#fcfcfc"
+                color="var(--primary-foreground)"
                 fullWidth
-                backgroundColor="#475be8"
+                backgroundColor="var(--primary)"
                 handleClick={() => toggleSort("price")}
               />
               <TextField
@@ -170,8 +174,8 @@ const AllProperties = () => {
         <Box display="flex" gap={2} mt={3} flexWrap="wrap" alignItems="center" justifyContent={{ xs: "center", sm: "flex-start" }}>
           <CustomButton
             title="Previous"
-            color="#fcfcfc"
-            backgroundColor="#475be8"
+            color="var(--primary-foreground)"
+            backgroundColor="var(--primary)"
             handleClick={() => setCurrent((prev) => prev - 1)}
             disabled={!(current > 1)}
           />
@@ -187,8 +191,8 @@ const AllProperties = () => {
           </Box>
           <CustomButton
             title="Next"
-            color="#fcfcfc"
-            backgroundColor="#475be8"
+            color="var(--primary-foreground)"
+            backgroundColor="var(--primary)"
             handleClick={() => setCurrent((prev) => prev + 1)}
             disabled={current === pageCount}
           />

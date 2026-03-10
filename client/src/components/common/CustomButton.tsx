@@ -1,26 +1,38 @@
 import { Button } from "@pankod/refine-mui";
 import { CustomButtonProps } from "interfaces/common";
 
-const CustomButton = ({ type, title, backgroundColor, color, fullWidth, icon, handleClick, disabled }: CustomButtonProps) => {
+const CustomButton = ({
+  type,
+  title,
+  backgroundColor,
+  color,
+  fullWidth,
+  icon,
+  handleClick,
+  disabled,
+}: CustomButtonProps) => {
   return (
     <Button
       disabled={disabled}
-      type={type === 'submit' ? 'submit' : 'button'}
+      type={type === "submit" ? "submit" : "button"}
       sx={{
-        flex: fullWidth ? 1 : 'unset',
-        padding: "10px 12px",
+        flex: fullWidth ? 1 : "unset",
+        padding: "0.8rem 1rem",
         width: fullWidth ? "100%" : "fit-content",
         minWidth: 130,
-        backgroundColor,
-        color,
-        fontSize: 16,
+        backgroundColor: backgroundColor ?? "var(--primary)",
+        color: color ?? "var(--primary-foreground)",
+        fontSize: "0.95rem",
         fontWeight: 600,
-        gap: "10px",
+        gap: "0.6rem",
         textTransform: "capitalize",
+        borderRadius: "var(--radius)",
+        boxShadow: "var(--shadow-sm)",
         "&:hover": {
-          opacity: 0.9,
-          backgroundColor
-        }
+          opacity: 0.95,
+          backgroundColor: backgroundColor ?? "var(--primary)",
+          boxShadow: "var(--shadow-md)",
+        },
       }}
       onClick={handleClick}
     >

@@ -1,10 +1,71 @@
+:root {
+  --background: #000000;
+  --foreground: #f0f0f0;
+  --card: #0a0a0a;
+  --card-foreground: #f0f0f0;
+  --popover: #1a1b1b;
+  --popover-foreground: #f0f0f0;
+  --primary: #51f0a8;
+  --primary-foreground: #000000;
+  --secondary: #216a49;
+  --secondary-foreground: #f0f0f0;
+  --muted: #252527;
+  --muted-foreground: #969696;
+  --accent: #093723;
+  --accent-foreground: #fefefe;
+  --destructive: #ff78a5;
+  --destructive-foreground: #ffffff;
+  --border: #19191a;
+  --input: #3b3b3b;
+  --ring: #51f0a8;
+  --chart-1: #51f0a8;
+  --chart-2: #9effa1;
+  --chart-3: #ffb7cf;
+  --chart-4: #5fd0ff;
+  --chart-5: #ffb188;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #f0f0f0;
+  --sidebar-primary: #51f0a8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #00331b;
+  --sidebar-accent-foreground: #51f0a8;
+  --sidebar-border: #353a3e;
+  --sidebar-ring: #51f0a8;
+  --font-sans: Plus Jakarta Sans, sans-serif;
+  --font-serif: Lora, serif;
+  --font-mono: IBM Plex Mono, monospace;
+  --radius: 1.4rem;
+  --shadow-x: 0;
+  --shadow-y: 1px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.1;
+  --shadow-color: oklch(0 0 0);
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+/* .dark is no longer used; root tokens already represent dark mode */
+
 * {
-  font-family: 'Manrope', sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
   box-sizing: border-box;
 }
 
 body {
   overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 a {
@@ -73,7 +134,11 @@ html {
 
 /* Landing Page Styles */
 .landing-bg {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -88,14 +153,27 @@ html {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+

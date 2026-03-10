@@ -19,7 +19,7 @@ const Agent = () => {
 
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142d">
+      <Typography fontSize={25} fontWeight={700} color="var(--foreground)">
         Agents List
       </Typography>
 

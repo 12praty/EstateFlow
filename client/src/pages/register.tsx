@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, TextField, Button, Typography, Stack } from "@pankod/refine-mui";
+import { CheckCircle } from "phosphor-react";
 import { logo, tower } from "../assets";
 
 interface RegisterProps {
@@ -84,7 +85,7 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
         display: "flex",
         height: "100vh",
         width: "100vw",
-        backgroundColor: "#0a0e27",
+        backgroundColor: "var(--background)",
       }}
     >
       {/* Left Image Panel */}
@@ -104,7 +105,8 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
           sx={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(110,142,251,0.08), rgba(167,119,227,0.05))",
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, transparent), color-mix(in srgb, var(--chart-2) 5%, transparent))",
             zIndex: 0,
           }}
         />
@@ -116,7 +118,8 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
             width: "350px",
             height: "350px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(167,119,227,0.2) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--chart-2) 20%, transparent) 0%, transparent 70%)",
             filter: "blur(80px)",
             pointerEvents: "none",
           }}
@@ -138,7 +141,8 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
             sx={{
               fontSize: "1.3rem",
               fontWeight: 800,
-              background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+              background:
+                "linear-gradient(135deg, var(--primary), var(--chart-2))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -173,10 +177,23 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
 
         {/* Bottom text */}
         <Box sx={{ zIndex: 1 }}>
-          <Typography sx={{ fontSize: "1.5rem", fontWeight: 700, color: "#e2e8f0", mb: 1 }}>
+          <Typography
+            sx={{
+              fontSize: "1.5rem",
+              fontWeight: 700,
+              color: "var(--foreground)",
+              mb: 1,
+            }}
+          >
             Join Our Community
           </Typography>
-          <Typography sx={{ color: "#8892b0", fontSize: "0.95rem", maxWidth: "400px" }}>
+          <Typography
+            sx={{
+              color: "var(--muted-foreground)",
+              fontSize: "0.95rem",
+              maxWidth: "400px",
+            }}
+          >
             Create an account and start managing your real estate portfolio with the most powerful tools available.
           </Typography>
         </Box>
@@ -191,7 +208,7 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
           justifyContent: "center",
           alignItems: "center",
           padding: { xs: "2rem 1.5rem", sm: "3rem" },
-          backgroundColor: "#fcfcfc",
+          backgroundColor: "var(--card)",
           position: "relative",
         }}
       >
@@ -223,13 +240,15 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
             sx={{
               fontSize: { xs: "1.6rem", sm: "2rem" },
               fontWeight: 800,
-              color: "#11142d",
+              color: "var(--foreground)",
               mb: 0.5,
             }}
           >
             Create Account
           </Typography>
-          <Typography sx={{ color: "#808191", mb: 4, fontSize: "0.95rem" }}>
+          <Typography
+            sx={{ color: "var(--muted-foreground)", mb: 4, fontSize: "0.95rem" }}
+          >
             Sign up to start managing your properties
           </Typography>
 
@@ -239,16 +258,32 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
               sx={{
                 textAlign: "center",
                 padding: "2rem",
-                borderRadius: "16px",
-                background: "linear-gradient(135deg, rgba(46,212,128,0.08), rgba(46,212,128,0.02))",
-                border: "1px solid rgba(46,212,128,0.2)",
+                borderRadius: "var(--radius)",
+                background:
+                  "linear-gradient(135deg, color-mix(in srgb, var(--chart-2) 8%, transparent), color-mix(in srgb, var(--chart-2) 2%, transparent))",
+                border:
+                  "1px solid color-mix(in srgb, var(--chart-2) 20%, transparent)",
               }}
             >
-              <Typography sx={{ fontSize: "2.5rem", mb: 1 }}>✅</Typography>
-              <Typography sx={{ fontSize: "1.2rem", fontWeight: 700, color: "#11142d", mb: 0.5 }}>
+              <CheckCircle
+                size={40}
+                weight="fill"
+                color="var(--chart-2)"
+                style={{ marginBottom: "0.5rem" }}
+              />
+              <Typography
+                sx={{
+                  fontSize: "1.2rem",
+                  fontWeight: 700,
+                  color: "var(--foreground)",
+                  mb: 0.5,
+                }}
+              >
                 Registration Successful!
               </Typography>
-              <Typography sx={{ color: "#808191", fontSize: "0.9rem" }}>
+              <Typography
+                sx={{ color: "var(--muted-foreground)", fontSize: "0.9rem" }}
+              >
                 Redirecting you to the login page...
               </Typography>
             </Box>
@@ -274,9 +309,9 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "12px",
-                    backgroundColor: "#f8f9fa",
-                    "&:hover fieldset": { borderColor: "#6e8efb" },
-                    "&.Mui-focused fieldset": { borderColor: "#6e8efb" },
+                    backgroundColor: "var(--input)",
+                    "&:hover fieldset": { borderColor: "var(--ring)" },
+                    "&.Mui-focused fieldset": { borderColor: "var(--ring)" },
                   },
                 }}
               />
@@ -292,9 +327,9 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "12px",
-                    backgroundColor: "#f8f9fa",
-                    "&:hover fieldset": { borderColor: "#6e8efb" },
-                    "&.Mui-focused fieldset": { borderColor: "#6e8efb" },
+                    backgroundColor: "var(--input)",
+                    "&:hover fieldset": { borderColor: "var(--ring)" },
+                    "&.Mui-focused fieldset": { borderColor: "var(--ring)" },
                   },
                 }}
               />
@@ -310,9 +345,9 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "12px",
-                    backgroundColor: "#f8f9fa",
-                    "&:hover fieldset": { borderColor: "#6e8efb" },
-                    "&.Mui-focused fieldset": { borderColor: "#6e8efb" },
+                    backgroundColor: "var(--input)",
+                    "&:hover fieldset": { borderColor: "var(--ring)" },
+                    "&.Mui-focused fieldset": { borderColor: "var(--ring)" },
                   },
                 }}
               />
@@ -329,21 +364,23 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
                 variant="contained"
                 disabled={loading}
                 sx={{
-                  background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
-                  color: "#fff",
+                  background:
+                    "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
+                  color: "var(--primary-foreground)",
                   fontSize: "1rem",
                   fontWeight: 700,
                   textTransform: "none",
                   padding: "13px",
-                  borderRadius: "12px",
+                  borderRadius: "var(--radius)",
                   mt: 1,
-                  boxShadow: "0 4px 14px rgba(110,142,251,0.4)",
+                  boxShadow: "var(--shadow-md)",
                   "&:hover": {
-                    boxShadow: "0 6px 20px rgba(110,142,251,0.55)",
+                    boxShadow: "var(--shadow-lg)",
                     transform: "translateY(-1px)",
                   },
                   "&.Mui-disabled": {
-                    background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
+                    background:
+                      "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
                     opacity: 0.6,
                   },
                   transition: "all 0.3s ease",
@@ -353,7 +390,7 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
               </Button>
 
               <Stack direction="row" justifyContent="center" gap={0.5} sx={{ mt: 2 }}>
-                <Typography fontSize={14} color="#808191">
+                <Typography fontSize={14} color="var(--muted-foreground)">
                   Already have an account?
                 </Typography>
                 <Typography
@@ -361,7 +398,8 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
                   sx={{
                     cursor: "pointer",
                     fontWeight: 700,
-                    background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                    background:
+                      "linear-gradient(135deg, var(--primary), var(--chart-2))",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     "&:hover": { opacity: 0.8 },
@@ -379,7 +417,7 @@ export const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
         {/* Footer */}
         <Typography
           variant="body2"
-          color="#808191"
+          color="var(--muted-foreground)"
           sx={{
             position: "absolute",
             bottom: "1.5rem",

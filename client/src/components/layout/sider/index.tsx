@@ -125,7 +125,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
                     sx={{
                       justifyContent: "center",
                       minWidth: 36,
-                      color: "primary.contrastText",
+                      color: "var(--sidebar-foreground)",
                     }}
                   >
                     {icon ?? <ListOutlined />}
@@ -166,7 +166,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             disableHoverListener={!collapsed}
             arrow
           >
-            <ListItemButton
+              <ListItemButton
               component={Link}
               to={route}
               selected={isSelected}
@@ -193,20 +193,24 @@ export const Sider: typeof DefaultSider = ({ render }) => {
                 sx={{
                   justifyContent: "center",
                   minWidth: 36,
-                  color: isSelected ? "#fff" : "#808191",
+                  color: isSelected
+                    ? "var(--sidebar-primary-foreground)"
+                    : "var(--muted-foreground)",
                 }}
               >
                 {icon ?? <ListOutlined />}
               </ListItemIcon>
               <ListItemText
                 primary={label}
-                primaryTypographyProps={{
-                  noWrap: true,
-                  fontSize: "16px",
-                  fontWeight: isSelected ? "bold" : "normal",
-                  color: isSelected ? "#fff" : "#808191",
-                  marginLeft: "10px"
-                }}
+                  primaryTypographyProps={{
+                    noWrap: true,
+                    fontSize: "16px",
+                    fontWeight: isSelected ? "bold" : "normal",
+                    color: isSelected
+                      ? "var(--sidebar-primary-foreground)"
+                      : "var(--muted-foreground)",
+                    marginLeft: "10px",
+                  }}
               />
             </ListItemButton>
           </Tooltip>
@@ -246,9 +250,9 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             sx={{
               justifyContent: "center",
               minWidth: 36,
-              color: "#808191",
+              color: "var(--muted-foreground)",
               marginLeft: "8px",
-              marginRight: "14px"
+              marginRight: "14px",
             }}
           >
             <Dashboard />
@@ -273,7 +277,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
       disableHoverListener={!collapsed}
       arrow
     >
-      <ListItemButton
+        <ListItemButton
         key="logout"
         onClick={() => mutateLogout()}
         sx={{
@@ -288,7 +292,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
           sx={{
             justifyContent: "center",
             minWidth: 36,
-            color: "#808191",
+            color: "var(--muted-foreground)",
           }}
         >
           <Logout />
@@ -325,7 +329,10 @@ export const Sider: typeof DefaultSider = ({ render }) => {
   };
 
   const drawer = (
-    <MuiList disablePadding sx={{ mt: 1, color: "#808191" }}>
+    <MuiList
+      disablePadding
+      sx={{ mt: 1, color: "var(--muted-foreground)" }}
+    >
       {renderSider()}
     </MuiList>
   );
@@ -362,7 +369,8 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             display: { sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
               width: 256,
-              bgcolor: "#FCFCFC",
+              bgcolor: "var(--sidebar)",
+              color: "var(--sidebar-foreground)",
             },
           }}
         >
@@ -385,9 +393,11 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             display: { xs: "none", md: "block" },
             "& .MuiDrawer-paper": {
               width: drawerWidth,
-              bgcolor: "#FCFCFC",
+              bgcolor: "var(--sidebar)",
+              color: "var(--sidebar-foreground)",
               overflow: "hidden",
-              transition: "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+              transition:
+                "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
             },
           }}
           open
@@ -413,14 +423,16 @@ export const Sider: typeof DefaultSider = ({ render }) => {
           </Box>
           <Button
             sx={{
-              background: "#475BE8",
-              color: "primary.contrastText",
+              backgroundColor:
+                "color-mix(in srgb, var(--sidebar) 75%, var(--sidebar-primary) 25%)",
+              color: "var(--sidebar-primary-foreground)",
               textAlign: "center",
               borderRadius: 0,
-              borderTop: "1px solid #ffffff1a",
-              '&:hover': {
-                background: "#1e36e8",
-              }
+              borderTop: `1px solid var(--sidebar-border)`,
+              "&:hover": {
+                backgroundColor:
+                  "color-mix(in srgb, var(--sidebar) 65%, var(--sidebar-primary) 35%)",
+              },
             }}
             fullWidth
             size="large"
@@ -436,13 +448,16 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             top: "64px",
             left: "0px",
             borderRadius: "0 6px 6px 0",
-            bgcolor: "#475be8",
+            bgcolor: "var(--sidebar-primary)",
             zIndex: 1199,
             width: "36px",
           }}
         >
           <IconButton
-            sx={{ color: "#fff", width: "36px" }}
+            sx={{
+              color: "var(--sidebar-primary-foreground)",
+              width: "36px",
+            }}
             onClick={() => setOpened((prev) => !prev)}
           >
             <MenuRounded />

@@ -1,4 +1,12 @@
 import { Box, Typography, Button, Stack } from "@pankod/refine-mui";
+import {
+  House,
+  UsersThree,
+  ChartBar,
+  Lock,
+  DeviceMobile,
+  Lightning,
+} from "phosphor-react";
 import { logo, tower } from "../assets";
 
 interface LandingPageProps {
@@ -12,8 +20,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         minHeight: "100vh",
         width: "100vw",
         overflowX: "hidden",
-        backgroundColor: "#0a0e27",
-        color: "#fff",
+        backgroundColor: "var(--background)",
+        color: "var(--foreground)",
       }}
     >
       {/* ─── Navbar ─── */}
@@ -30,8 +38,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           right: 0,
           zIndex: 100,
           backdropFilter: "blur(20px)",
-          backgroundColor: "rgba(10,14,39,0.7)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          backgroundColor: "color-mix(in srgb, var(--background) 80%, transparent)",
+          borderBottom: "1px solid var(--border)",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
@@ -40,7 +48,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             sx={{
               fontSize: { xs: "1.2rem", md: "1.4rem" },
               fontWeight: 800,
-              background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+              background:
+                "linear-gradient(135deg, var(--primary), var(--chart-2))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               letterSpacing: "0.5px",
@@ -54,7 +63,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <Button
             onClick={() => onNavigate("login")}
             sx={{
-              color: "#c8cedd",
+              color: "var(--muted-foreground)",
               fontWeight: 600,
               textTransform: "none",
               fontSize: { xs: "0.85rem", md: "0.95rem" },
@@ -73,8 +82,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <Button
             onClick={() => onNavigate("register")}
             sx={{
-              background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
-              color: "#fff",
+              background:
+                "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
+              color: "var(--primary-foreground)",
               fontWeight: 600,
               textTransform: "none",
               fontSize: { xs: "0.85rem", md: "0.95rem" },
@@ -101,7 +111,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           alignItems: "center",
           justifyContent: "space-between",
           minHeight: "100vh",
-          padding: { xs: "8rem 1.5rem 4rem", md: "0 4rem" },
+          pt: { xs: "7rem", md: "8rem" }, // push hero content below fixed navbar
+          pb: "4rem",
+          px: { xs: "1.5rem", md: "4rem" },
           gap: { xs: 4, md: 6 },
           position: "relative",
         }}
@@ -115,7 +127,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             width: "400px",
             height: "400px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(110,142,251,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 70%)",
             filter: "blur(60px)",
             pointerEvents: "none",
           }}
@@ -128,7 +141,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             width: "350px",
             height: "350px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(167,119,227,0.12) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--chart-2) 12%, transparent) 0%, transparent 70%)",
             filter: "blur(60px)",
             pointerEvents: "none",
           }}
@@ -140,15 +154,27 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             className="animate-fade-in"
             sx={{
               display: "inline-block",
-              background: "rgba(110,142,251,0.12)",
-              border: "1px solid rgba(110,142,251,0.25)",
-              borderRadius: "50px",
+              background:
+                "color-mix(in srgb, var(--primary) 12%, transparent)",
+              border:
+                "1px solid color-mix(in srgb, var(--primary) 25%, transparent)",
+              borderRadius: "999px",
               padding: "6px 20px",
               mb: 3,
             }}
           >
-            <Typography sx={{ fontSize: "0.85rem", color: "#a0b4fb", fontWeight: 600 }}>
-              🏠 #1 Property Management Platform
+            <Typography
+              sx={{
+                fontSize: "0.85rem",
+                color: "var(--accent-foreground)",
+                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+              }}
+            >
+              <House size={16} weight="fill" />
+              #1 Property Management Platform
             </Typography>
           </Box>
 
@@ -166,7 +192,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <Box
               component="span"
               sx={{
-                background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                background:
+                  "linear-gradient(135deg, var(--primary), var(--chart-2))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -180,7 +207,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             className="animate-fade-in delay-100"
             sx={{
               fontSize: { xs: "1rem", md: "1.15rem" },
-              color: "#8892b0",
+              color: "var(--muted-foreground)",
               lineHeight: 1.7,
               mb: 4,
               maxWidth: "520px",
@@ -199,16 +226,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <Button
               onClick={() => onNavigate("register")}
               sx={{
-                background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
-                color: "#fff",
+                background:
+                  "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
+                color: "var(--primary-foreground)",
                 fontWeight: 700,
                 textTransform: "none",
                 fontSize: "1rem",
                 padding: "14px 36px",
-                borderRadius: "14px",
-                boxShadow: "0 6px 20px rgba(110,142,251,0.4)",
+                borderRadius: "var(--radius)",
+                boxShadow: "var(--shadow-lg)",
                 "&:hover": {
-                  boxShadow: "0 8px 30px rgba(110,142,251,0.55)",
+                  boxShadow: "var(--shadow-2xl)",
                   transform: "translateY(-2px)",
                 },
                 transition: "all 0.3s ease",
@@ -219,16 +247,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <Button
               onClick={() => onNavigate("login")}
               sx={{
-                color: "#c8cedd",
+                color: "var(--muted-foreground)",
                 fontWeight: 600,
                 textTransform: "none",
                 fontSize: "1rem",
                 padding: "14px 36px",
                 borderRadius: "14px",
-                border: "1px solid rgba(255,255,255,0.12)",
+                border: "1px solid var(--border)",
                 "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.05)",
-                  borderColor: "rgba(255,255,255,0.25)",
+                  backgroundColor:
+                    "color-mix(in srgb, var(--accent) 10%, transparent)",
+                  borderColor: "var(--border)",
                 },
                 transition: "all 0.3s ease",
               }}
@@ -253,7 +282,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 <Typography sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" }, fontWeight: 800 }}>
                   {stat.value}
                 </Typography>
-                <Typography sx={{ fontSize: "0.85rem", color: "#6b7280", fontWeight: 500 }}>
+                <Typography
+                  sx={{
+                    fontSize: "0.85rem",
+                    color: "var(--muted-foreground)",
+                    fontWeight: 500,
+                  }}
+                >
                   {stat.label}
                 </Typography>
               </Box>
@@ -274,7 +309,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             sx={{
               borderRadius: "24px",
               overflow: "hidden",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)",
+              boxShadow: "var(--shadow-2xl)",
               position: "relative",
               "&::after": {
                 content: '""',
@@ -283,7 +318,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: "linear-gradient(180deg, transparent 60%, rgba(10,14,39,0.5))",
+                background:
+                  "linear-gradient(180deg, transparent 60%, color-mix(in srgb, var(--background) 50%, transparent))",
                 pointerEvents: "none",
               },
             }}
@@ -328,7 +364,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <Box
               component="span"
               sx={{
-                background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                background:
+                  "linear-gradient(135deg, var(--primary), var(--chart-2))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -337,7 +374,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </Box>
             ?
           </Typography>
-          <Typography sx={{ color: "#8892b0", fontSize: "1.05rem", maxWidth: "550px", mx: "auto" }}>
+          <Typography
+            sx={{
+              color: "var(--muted-foreground)",
+              fontSize: "1.05rem",
+              maxWidth: "550px",
+              mx: "auto",
+            }}
+          >
             Everything you need to find, manage, and grow your real estate portfolio.
           </Typography>
         </Box>
@@ -353,32 +397,32 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         >
           {[
             {
-              icon: "🏡",
+              icon: <House size={24} weight="fill" />,
               title: "Smart Property Search",
               desc: "Advanced filters and AI-powered recommendations to find your ideal property.",
             },
             {
-              icon: "👥",
+              icon: <UsersThree size={24} weight="fill" />,
               title: "Top Verified Agents",
               desc: "Connect with experienced and verified real estate professionals you can trust.",
             },
             {
-              icon: "📊",
+              icon: <ChartBar size={24} weight="fill" />,
               title: "Analytics Dashboard",
               desc: "Track your portfolio performance with real-time analytics and insights.",
             },
             {
-              icon: "🔒",
+              icon: <Lock size={24} weight="fill" />,
               title: "Secure Transactions",
               desc: "End-to-end encrypted communication and secure document management.",
             },
             {
-              icon: "📱",
+              icon: <DeviceMobile size={24} weight="fill" />,
               title: "Fully Responsive",
               desc: "Access your portfolio from any device — desktop, tablet, or mobile.",
             },
             {
-              icon: "⚡",
+              icon: <Lightning size={24} weight="fill" />,
               title: "Lightning Fast",
               desc: "Optimized performance ensures you never wait for property listings to load.",
             },
@@ -387,23 +431,39 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               key={feature.title}
               sx={{
                 padding: "2rem",
-                borderRadius: "20px",
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "var(--radius)",
+                backgroundColor: "color-mix(in srgb, var(--card) 95%, transparent)",
+                border: "1px solid var(--border)",
                 transition: "all 0.3s ease",
                 "&:hover": {
-                  background: "rgba(255,255,255,0.06)",
-                  borderColor: "rgba(110,142,251,0.25)",
+                  backgroundColor:
+                    "color-mix(in srgb, var(--card) 90%, var(--accent) 10%)",
+                  borderColor: "var(--accent)",
                   transform: "translateY(-4px)",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                  boxShadow: "var(--shadow-lg)",
                 },
               }}
             >
-              <Typography sx={{ fontSize: "2rem", mb: 2 }}>{feature.icon}</Typography>
-              <Typography sx={{ fontSize: "1.15rem", fontWeight: 700, mb: 1, color: "#e2e8f0" }}>
+              <Typography sx={{ fontSize: "2rem", mb: 2 }}>
+                {feature.icon}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "1.15rem",
+                  fontWeight: 700,
+                  mb: 1,
+                  color: "var(--foreground)",
+                }}
+              >
                 {feature.title}
               </Typography>
-              <Typography sx={{ color: "#8892b0", fontSize: "0.9rem", lineHeight: 1.6 }}>
+              <Typography
+                sx={{
+                  color: "var(--muted-foreground)",
+                  fontSize: "0.9rem",
+                  lineHeight: 1.6,
+                }}
+              >
                 {feature.desc}
               </Typography>
             </Box>
@@ -423,9 +483,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             maxWidth: "700px",
             mx: "auto",
             padding: { xs: "3rem 2rem", md: "4rem" },
-            borderRadius: "28px",
-            background: "linear-gradient(135deg, rgba(110,142,251,0.12), rgba(167,119,227,0.08))",
-            border: "1px solid rgba(110,142,251,0.15)",
+            borderRadius: "var(--radius)",
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, transparent), color-mix(in srgb, var(--chart-2) 8%, transparent))",
+            border:
+              "1px solid color-mix(in srgb, var(--primary) 15%, transparent)",
           }}
         >
           <Typography
@@ -437,22 +499,31 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           >
             Ready to Find Your Dream Home?
           </Typography>
-          <Typography sx={{ color: "#8892b0", mb: 4, fontSize: "1rem", maxWidth: "450px", mx: "auto" }}>
+          <Typography
+            sx={{
+              color: "var(--muted-foreground)",
+              mb: 4,
+              fontSize: "1rem",
+              maxWidth: "450px",
+              mx: "auto",
+            }}
+          >
             Join thousands of satisfied users who found their perfect property through EstateFlow.
           </Typography>
           <Button
             onClick={() => onNavigate("register")}
             sx={{
-              background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
-              color: "#fff",
+              background:
+                "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
+              color: "var(--primary-foreground)",
               fontWeight: 700,
               textTransform: "none",
               fontSize: "1.05rem",
               padding: "14px 44px",
-              borderRadius: "14px",
-              boxShadow: "0 6px 20px rgba(110,142,251,0.4)",
+              borderRadius: "var(--radius)",
+              boxShadow: "var(--shadow-lg)",
               "&:hover": {
-                boxShadow: "0 8px 30px rgba(110,142,251,0.55)",
+                boxShadow: "var(--shadow-2xl)",
                 transform: "translateY(-2px)",
               },
               transition: "all 0.3s ease",
@@ -464,28 +535,41 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </Box>
 
       {/* ─── Footer ─── */}
-      <Box
-        sx={{
-          padding: { xs: "2rem 1.5rem", md: "2rem 4rem" },
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 2,
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <img src={logo} alt="EstateFlow" width={24} style={{ filter: "brightness(2)" }} />
-          <Typography sx={{ fontWeight: 700, fontSize: "0.95rem", color: "#8892b0" }}>
-            EstateFlow
+        <Box
+          sx={{
+            padding: { xs: "2rem 1.5rem", md: "2rem 4rem" },
+            borderTop: "1px solid var(--border)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <img
+              src={logo}
+              alt="EstateFlow"
+              width={24}
+              style={{ filter: "brightness(2)" }}
+            />
+            <Typography
+              sx={{
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                color: "var(--muted-foreground)",
+              }}
+            >
+              EstateFlow
+            </Typography>
+          </Box>
+          <Typography
+            sx={{ color: "var(--muted-foreground)", fontSize: "0.85rem" }}
+          >
+            © 2026 EstateFlow. All rights reserved.
           </Typography>
         </Box>
-        <Typography sx={{ color: "#6b7280", fontSize: "0.85rem" }}>
-          © 2026 EstateFlow. All rights reserved.
-        </Typography>
       </Box>
-    </Box>
   );
 };
 

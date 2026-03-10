@@ -46,7 +46,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         display: "flex",
         height: "100vh",
         width: "100vw",
-        backgroundColor: "#0a0e27",
+        backgroundColor: "var(--background)",
       }}
     >
       {/* Left Image Panel */}
@@ -66,7 +66,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           sx={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(110,142,251,0.08), rgba(167,119,227,0.05))",
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, transparent), color-mix(in srgb, var(--chart-2) 5%, transparent))",
             zIndex: 0,
           }}
         />
@@ -78,7 +79,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             width: "350px",
             height: "350px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(110,142,251,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 70%)",
             filter: "blur(80px)",
             pointerEvents: "none",
           }}
@@ -100,7 +102,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             sx={{
               fontSize: "1.3rem",
               fontWeight: 800,
-              background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+              background:
+                "linear-gradient(135deg, var(--primary), var(--chart-2))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -135,10 +138,23 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
         {/* Bottom text */}
         <Box sx={{ zIndex: 1 }}>
-          <Typography sx={{ fontSize: "1.5rem", fontWeight: 700, color: "#e2e8f0", mb: 1 }}>
+          <Typography
+            sx={{
+              fontSize: "1.5rem",
+              fontWeight: 700,
+              color: "var(--foreground)",
+              mb: 1,
+            }}
+          >
             Welcome Back
           </Typography>
-          <Typography sx={{ color: "#8892b0", fontSize: "0.95rem", maxWidth: "400px" }}>
+          <Typography
+            sx={{
+              color: "var(--muted-foreground)",
+              fontSize: "0.95rem",
+              maxWidth: "400px",
+            }}
+          >
             Sign in to access your dashboard, manage properties, and connect with agents.
           </Typography>
         </Box>
@@ -153,7 +169,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           justifyContent: "center",
           alignItems: "center",
           padding: { xs: "2rem 1.5rem", sm: "3rem" },
-          backgroundColor: "#fcfcfc",
+          backgroundColor: "var(--card)",
           position: "relative",
         }}
       >
@@ -170,6 +186,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         >
           <img src={logo} alt="EstateFlow" width={28} />
           <Typography className="text-gradient" sx={{ fontSize: "1.3rem", fontWeight: 800 }}>
+          {/* gradient is defined in index.css but uses legacy colors; keep class, tokens drive base */}
             EstateFlow
           </Typography>
         </Box>
@@ -185,13 +202,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             sx={{
               fontSize: { xs: "1.6rem", sm: "2rem" },
               fontWeight: 800,
-              color: "#11142d",
+              color: "var(--foreground)",
               mb: 0.5,
             }}
           >
             Sign In
           </Typography>
-          <Typography sx={{ color: "#808191", mb: 4, fontSize: "0.95rem" }}>
+          <Typography
+            sx={{ color: "var(--muted-foreground)", mb: 4, fontSize: "0.95rem" }}
+          >
             Enter your credentials to access your account
           </Typography>
 
@@ -217,9 +236,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   borderRadius: "12px",
-                  backgroundColor: "#f8f9fa",
-                  "&:hover fieldset": { borderColor: "#6e8efb" },
-                  "&.Mui-focused fieldset": { borderColor: "#6e8efb" },
+                  backgroundColor: "var(--input)",
+                  "&:hover fieldset": { borderColor: "var(--ring)" },
+                  "&.Mui-focused fieldset": { borderColor: "var(--ring)" },
                 },
               }}
             />
@@ -235,9 +254,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   borderRadius: "12px",
-                  backgroundColor: "#f8f9fa",
-                  "&:hover fieldset": { borderColor: "#6e8efb" },
-                  "&.Mui-focused fieldset": { borderColor: "#6e8efb" },
+                  backgroundColor: "var(--input)",
+                  "&:hover fieldset": { borderColor: "var(--ring)" },
+                  "&.Mui-focused fieldset": { borderColor: "var(--ring)" },
                 },
               }}
             />
@@ -254,21 +273,23 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               variant="contained"
               disabled={loading}
               sx={{
-                background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
-                color: "#fff",
+                background:
+                  "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
+                color: "var(--primary-foreground)",
                 fontSize: "1rem",
                 fontWeight: 700,
                 textTransform: "none",
                 padding: "13px",
-                borderRadius: "12px",
+                borderRadius: "var(--radius)",
                 mt: 1,
-                boxShadow: "0 4px 14px rgba(110,142,251,0.4)",
+                boxShadow: "var(--shadow-md)",
                 "&:hover": {
-                  boxShadow: "0 6px 20px rgba(110,142,251,0.55)",
+                  boxShadow: "var(--shadow-lg)",
                   transform: "translateY(-1px)",
                 },
                 "&.Mui-disabled": {
-                  background: "linear-gradient(135deg, #6e8efb 0%, #a777e3 100%)",
+                  background:
+                    "linear-gradient(135deg, var(--primary) 0%, var(--chart-2) 100%)",
                   opacity: 0.6,
                 },
                 transition: "all 0.3s ease",
@@ -278,7 +299,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             </Button>
 
             <Stack direction="row" justifyContent="center" gap={0.5} sx={{ mt: 2 }}>
-              <Typography fontSize={14} color="#808191">
+              <Typography fontSize={14} color="var(--muted-foreground)">
                 Don't have an account?
               </Typography>
               <Typography
@@ -286,7 +307,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
                 sx={{
                   cursor: "pointer",
                   fontWeight: 700,
-                  background: "linear-gradient(135deg, #6e8efb, #a777e3)",
+                  background:
+                    "linear-gradient(135deg, var(--primary), var(--chart-2))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   "&:hover": { opacity: 0.8 },
@@ -303,7 +325,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         {/* Footer */}
         <Typography
           variant="body2"
-          color="#808191"
+          color="var(--muted-foreground)"
           sx={{
             position: "absolute",
             bottom: "1.5rem",

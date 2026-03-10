@@ -12,11 +12,16 @@ function checkImage(url: any) {
 
 const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
   <Box>
-    <Typography fontSize={25} fontWeight={700} color="#11142D">
+    <Typography fontSize={25} fontWeight={700} color="var(--foreground)">
       {type} Profile
     </Typography>
 
-    <Box mt="20px" borderRadius="15px" padding={{ xs: "10px", sm: "20px" }} bgcolor="#FCFCFC">
+    <Box
+      mt="20px"
+      borderRadius="var(--radius)"
+      padding={{ xs: "10px", sm: "20px" }}
+      bgcolor="var(--card)"
+    >
       <Box
         sx={{
           display: "flex",
@@ -71,17 +76,25 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
               gap="30px"
             >
               <Stack direction="column">
-                <Typography fontSize={22} fontWeight={600} color="#11142D">
+                <Typography
+                  fontSize={22}
+                  fontWeight={600}
+                  color="var(--foreground)"
+                >
                   {name}
                 </Typography>
-                <Typography fontSize={16} color="#808191">
+                <Typography fontSize={16} color="var(--muted-foreground)">
                   Real Estate Agent
                 </Typography>
               </Stack>
 
               <Stack direction="column" gap="30px">
                 <Stack gap="15px">
-                  <Typography fontSize={14} fontWeight={500} color="#808191">
+                  <Typography
+                    fontSize={14}
+                    fontWeight={500}
+                    color="var(--muted-foreground)"
+                  >
                     Address
                   </Typography>
                   <Box
@@ -90,8 +103,11 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                     alignItems="center"
                     gap="10px"
                   >
-                    <Place sx={{ color: "#11142D" }} />
-                    <Typography fontSize={14} color="#11142D">
+                    <Place sx={{ color: "var(--foreground)" }} />
+                    <Typography
+                      fontSize={14}
+                      color="var(--foreground)"
+                    >
                       4517 Washington Ave. Manchaster, Kentucky 39495
                     </Typography>
                   </Box>
@@ -99,7 +115,11 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
 
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap="20px" pb={4}>
                   <Stack flex={1} gap="15px" minWidth={{ xs: "100%", sm: "auto" }}>
-                    <Typography fontSize={14} fontWeight={500} color="#808191">
+                    <Typography
+                      fontSize={14}
+                      fontWeight={500}
+                      color="var(--muted-foreground)"
+                    >
                       Phone Number
                     </Typography>
                     <Box
@@ -108,15 +128,23 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                       alignItems="center"
                       gap="10px"
                     >
-                      <Phone sx={{ color: "#11142D" }} />
-                      <Typography fontSize={14} color="#11142D" noWrap>
+                      <Phone sx={{ color: "var(--foreground)" }} />
+                      <Typography
+                        fontSize={14}
+                        color="var(--foreground)"
+                        noWrap
+                      >
                         +0123 456 7890
                       </Typography>
                     </Box>
                   </Stack>
 
                   <Stack flex={1} gap="15px" minWidth={{ xs: "100%", sm: "auto" }}>
-                    <Typography fontSize={14} fontWeight={500} color="#808191">
+                    <Typography
+                      fontSize={14}
+                      fontWeight={500}
+                      color="var(--muted-foreground)"
+                    >
                       Email
                     </Typography>
                     <Box
@@ -125,10 +153,10 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
                       alignItems="center"
                       gap="10px"
                     >
-                      <Email sx={{ color: "#11142D" }} />
+                      <Email sx={{ color: "var(--foreground)" }} />
                       <Typography
                         fontSize={14}
-                        color="#11142D"
+                        color="var(--foreground)"
                         sx={{
                           wordBreak: "break-all",
                           overflowWrap: "break-word",
@@ -147,8 +175,13 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
     </Box>
 
     {properties.length > 0 && (
-      <Box mt={2.5} borderRadius="15px" padding={{ xs: "10px", sm: "20px" }} bgcolor="#FCFCFC">
-        <Typography fontSize={18} fontWeight={600} color="#11142D">
+      <Box
+        mt={2.5}
+        borderRadius="var(--radius)"
+        padding={{ xs: "10px", sm: "20px" }}
+        bgcolor="var(--card)"
+      >
+        <Typography fontSize={18} fontWeight={600} color="var(--foreground)">
           {type} Properties
         </Typography>
 

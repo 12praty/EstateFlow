@@ -51,12 +51,12 @@ const PropertyDetails = () => {
   
   return (
     <Box
-      borderRadius="15px"
-      bgcolor="#fcfcfc"
+      borderRadius="var(--radius)"
+      bgcolor="var(--card)"
       padding={{ xs: "10px", sm: "20px" }}
       width="100%"
     >
-      <Typography fontSize={25} fontWeight={700} color="#11142d">
+      <Typography fontSize={25} fontWeight={700} color="var(--foreground)">
         Details
       </Typography>
       <Box
@@ -88,7 +88,7 @@ const PropertyDetails = () => {
               <Typography
                 fontSize={18}
                 fontWeight={500}
-                color="#11142d"
+                color="var(--foreground)"
                 textTransform="capitalize"
               >
                 {propertyDetails.propertyType}
@@ -111,18 +111,18 @@ const PropertyDetails = () => {
                 <Typography
                   fontSize={{ xs: 18, sm: 22 }}
                   fontWeight={600}
-                  color="#11142d"
+                  color="var(--foreground)"
                   textTransform="capitalize"
                   mt="10px"
                 >
                   {propertyDetails.title}
                 </Typography>
                 <Stack mt={0.5} direction="row" alignItems="center" gap={0.5}>
-                  <Place sx={{ color: "#808191" }} />
+                  <Place sx={{ color: "var(--muted-foreground)" }} />
                   <Typography
                     fontSize={14}
                     fontWeight={500}
-                    color="#808191"
+                    color="var(--muted-foreground)"
                     textTransform="capitalize"
                   >
                     {propertyDetails.location}
@@ -134,15 +134,23 @@ const PropertyDetails = () => {
                   fontSize={16}
                   fontWeight={600}
                   mt="10px"
-                  color="#11142D"
+                  color="var(--foreground)"
                 >
                   Price
                 </Typography>
                 <Stack direction="row" alignItems="flex-end" gap={1}>
-                  <Typography fontSize={{ xs: 20, sm: 25 }} fontWeight={700} color="#475BE8">
+                  <Typography
+                    fontSize={{ xs: 20, sm: 25 }}
+                    fontWeight={700}
+                    color="var(--primary)"
+                  >
                     ${propertyDetails.price}
                   </Typography>
-                  <Typography fontSize={14} color="#808191" mb={0.5}>
+                  <Typography
+                    fontSize={14}
+                    color="var(--muted-foreground)"
+                    mb={0.5}
+                  >
                     for one day
                   </Typography>
                 </Stack>
@@ -150,10 +158,10 @@ const PropertyDetails = () => {
             </Stack>
 
             <Stack mt="25px" direction="column" gap="10px">
-              <Typography fontSize={18} color="#11142D">
+              <Typography fontSize={18} color="var(--foreground)">
                 Description
               </Typography>
-              <Typography fontSize={14} color="#808191">
+              <Typography fontSize={14} color="var(--muted-foreground)">
                 {propertyDetails.description}
               </Typography>
             </Stack>
@@ -168,15 +176,15 @@ const PropertyDetails = () => {
           flexDirection="column"
           gap="20px"
         >
-          <Stack
-            width="100%"
-            p={2}
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            border="1px solid #E4E4E4"
-            borderRadius={2}
-          >
+            <Stack
+              width="100%"
+              p={2}
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              border="1px solid var(--border)"
+              borderRadius="var(--radius)"
+            >
             <Stack
               mt={2}
               justifyContent="center"
@@ -199,27 +207,40 @@ const PropertyDetails = () => {
               />
 
               <Box mt="15px">
-                <Typography fontSize={18} fontWeight={600} color="#11142D">
+                <Typography
+                  fontSize={18}
+                  fontWeight={600}
+                  color="var(--foreground)"
+                >
                   {propertyDetails?.creator?.name}
                 </Typography>
                 <Typography
                   mt="5px"
                   fontSize={14}
                   fontWeight={400}
-                  color="#808191"
+                  color="var(--muted-foreground)"
                 >
                   Agent
                 </Typography>
               </Box>
 
               <Stack mt="15px" direction="row" alignItems="center" gap={1}>
-                <Place sx={{ color: "#808191" }} />
-                <Typography fontSize={14} fontWeight={400} color="#808191">
+                <Place sx={{ color: "var(--muted-foreground)" }} />
+                <Typography
+                  fontSize={14}
+                  fontWeight={400}
+                  color="var(--muted-foreground)"
+                >
                   Delhi, India
                 </Typography>
               </Stack>
 
-              <Typography mt={1} fontSize={16} fontWeight={600} color="#11142D">
+              <Typography
+                mt={1}
+                fontSize={16}
+                fontWeight={600}
+                color="var(--foreground)"
+              >
                 {propertyDetails?.creator?.allProperties?.length ?? 0} Properties
               </Typography>
             </Stack>
@@ -234,7 +255,7 @@ const PropertyDetails = () => {
               <CustomButton
                 title={!isCurrentUser ? "Message" : "Edit"}
                 backgroundColor="#475BE8"
-                color="#FCFCFC"
+                color="var(--primary-foreground)"
                 fullWidth
                 icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                 handleClick={() => {
@@ -246,7 +267,7 @@ const PropertyDetails = () => {
               <CustomButton
                 title={!isCurrentUser ? "Call" : "Delete"}
                 backgroundColor={!isCurrentUser ? "#2ED480" : "#d42e2e"}
-                color="#FCFCFC"
+                color="var(--primary-foreground)"
                 fullWidth
                 icon={!isCurrentUser ? <Phone /> : <Delete />}
                 handleClick={() => {
@@ -270,7 +291,7 @@ const PropertyDetails = () => {
             <CustomButton
               title="Book Now"
               backgroundColor="#475BE8"
-              color="#FCFCFC"
+              color="var(--primary-foreground)"
               fullWidth
             />
           </Box>

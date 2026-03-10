@@ -21,11 +21,13 @@ export const Header: React.FC = () => {
 
   return shouldRenderHeader ? (
     <AppBar
-      color="default"
+      color="transparent"
       position="sticky"
       elevation={0}
       sx={{
-        background: "#FCFCFC",
+        backgroundColor: "var(--background)",
+        boxShadow: "none",
+        borderBottom: "1px solid var(--border)",
       }}
     >
       <Toolbar>
@@ -52,11 +54,37 @@ export const Header: React.FC = () => {
               <Chip
                 label={user?.name}
                 clickable
-                avatar={<Avatar>{user?.name[0]}</Avatar>}
+                variant="outlined"
+                sx={{
+                  borderColor: "var(--border)",
+                  color: "var(--muted-foreground)",
+                  "& .MuiChip-label": { fontWeight: 500 },
+                }}
+                avatar={
+                  <Avatar
+                    sx={{
+                      width: 28,
+                      height: 28,
+                      fontSize: 14,
+                      bgcolor: "var(--primary)",
+                      color: "var(--primary-foreground)",
+                    }}
+                  >
+                    {user?.name[0]}
+                  </Avatar>
+                }
               />
             ) : null}
             {user?.avatar ? (
-              <Avatar src={user?.avatar} alt={user?.name} />
+              <Avatar
+                src={user?.avatar}
+                alt={user?.name}
+                sx={{
+                  width: 32,
+                  height: 32,
+                  border: "2px solid var(--border)",
+                }}
+              />
             ) : null}
           </Stack>
         </Stack>

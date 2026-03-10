@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142D">
+      <Typography fontSize={25} fontWeight={700} color="var(--foreground)">
         Dashboard
       </Typography>
 
@@ -90,15 +90,15 @@ const Home = () => {
 
       <Box
         flex={1}
-        borderRadius="15px"
+        borderRadius="var(--radius)"
         padding={{ xs: "10px", sm: "20px" }}
-        bgcolor="#fcfcfc"
+        bgcolor="var(--card)"
         display="flex"
         flexDirection="column"
         minWidth="100%"
         mt="25px"
       >
-        <Typography fontSize={20} fontWeight={600} color="#11142D">
+        <Typography fontSize={20} fontWeight={600} color="var(--foreground)">
           Latest Properties
         </Typography>
 
